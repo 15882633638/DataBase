@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>循环双向链表</title>
+</head>
+
+<body>
+    <script>
+        class Node {
+            constructor(element) {
+                this.element = element;
+                this.prev = null;
+                this.next = null
+            }
+        }
+        class CirculateLinkedList {
+            constructor() {
+                this.length = 0;
+                this.head = null;
+                this.tail = null;
+            }
+            append(element) {
+                let node = new Node(element);
+                if (!this.head) {
+                    this.head = node;
+                    this.tail = node;
+                    this.head.prev = this.tail;
+                    this.tail.next = this.head;
+
+                } else {
+                    this.tail.next = node;
+                    node.next = this.head;
+                    node.prev = this.tail;
+                    this.head.prev = node;
+                    this.tail = node
+                }
+                this.length++
+            }
+            removeAt(position) {
+                if (position >= 0 && position <= this.length - 1) {
+                    if (this.length == 1) {
+                        this.head = null;
+                        this.tail = null;
+                    } else {
+                        if (position == 0) {
+                            this.head.next.prev = this.tail;
+                            this.head = this.head.next
+                        } else if (position == this.length - 1) {
+                            this.tail.prev.next = this.head;
+                            this.tail = this.tail.prev
+                        } else {
+                            let cu = this.head;
+                            let prev = cu.prev;
+                            let next = cu.next;
+                            let num = 0;
+                            while (num < position) {
+                                cu = cu.next;
+                                prev = cu.prev;
+                                next = cu.next;
+                                num++;
+                            }
+                            prev.next = next;
+                            next.prev = prev
+                        }
+                    }
+                    this.length--
+
+                }
+                else {
+                    return false
+                }
+            }
+
+            getHead() {
+                console.log(this.head)
+            }
+
+        }
+        let NewCirculateLinkedList = new CirculateLinkedList()
+        NewCirculateLinkedList.append(1);
+        NewCirculateLinkedList.append(2);
+        NewCirculateLinkedList.append(3);
+        NewCirculateLinkedList.getHead()
+
+
+
+    </script>
+</body>
+
+</html>

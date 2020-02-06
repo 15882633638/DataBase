@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        {
+            class Element {
+                constructor(element,priropty) {
+                    this.priropty = priropty;
+                    this.element = element
+                }
+            }
+            class Queue {
+                constructor() {
+                    this.items = []
+                }
+                //添加元素到队列里面
+                push(element,priropty) {
+                    let NewElement = new Element(element,priropty)
+                    if(!this.isempty()){
+                        let added = false
+                        for(let i = 0;i<this.size();i++){
+                            if(NewElement.priropty>this.items[i].priropty){
+                                this.items.splice(i,0,NewElement);
+                                added = true;
+                                break;
+                            }
+                        }
+                        if(!added){
+                            this.items.push(NewElement)
+                        }
+                    }else{
+                        this.items.push(NewElement)
+                    }
+                    
+                }
+                //删除元素
+                dequeue() {
+                    return this.items.shift()
+                }
+                // 返回队列即将要删除的的元素
+                peek() {
+                    return this.items[0]
+                }
+                //判定这个队列是否为空
+                isempty() {
+                    return this.items.length == 0
+                }
+                //清除队列里面的所有元素
+                clear() {
+                    this.items = []
+                }
+                //返回队列里面的个数
+                size() {
+                    return this.items.length
+                }
+                getitems() {
+                    return this.items
+                }
+            }
+            let NewQueue = new Queue()
+            NewQueue.push('这是一个数据',1)
+            NewQueue.push('这是第二个数据',2)
+            NewQueue.push('这是第三个数据',2)
+            console.log(NewQueue.getitems()) 
+        }
+
+    </script>
+</body>
+
+</html>

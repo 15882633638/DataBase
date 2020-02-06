@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>循环队列</title>
+</head>
+<body>
+    <script>
+        {
+            class Queue {
+                constructor() {
+                    this.items = []
+                }
+                //添加元素到队列里面
+                push(item) {
+                    this.items.push(item)
+                }
+                //删除元素
+                dequeue() {
+                    return this.items.shift()
+                }
+                // 返回队列即将要删除的的元素
+                peek() {
+                    return this.items[0]
+                }
+                //判定这个队列是否为空
+                isempty() {
+                    return this.items.length == 0
+                }
+                //清除队列里面的所有元素
+                clear() {
+                    this.items = []
+                }
+                //返回队列里面的个数
+                size() {
+                    return this.items.length
+                }
+                getitems() {
+                    return this.items
+                }
+            }
+            class Jos{
+                constructor(numlist,num){
+                    this.Queue = new Queue();
+                    this.num = num;
+                    for(let i = 0;i<numlist.length;i++){
+                        this.Queue.push(numlist[i])
+                    }
+                }
+                Skill(){
+                    let Skiler = ''
+                    while(this.Queue.size()>1){
+                        for(let i = 0;i<this.num;i++){
+                            this.Queue.push(this.Queue.dequeue())
+                        }
+                        Skiler = this.Queue.dequeue()
+                        console.log('删除了'+Skiler)
+                    }
+                    return this.Queue.dequeue()
+                }
+            }
+            let NewJos = new Jos([2,4,5,7,9],3)
+            console.log(NewJos.Skill())
+
+
+        }
+    </script>
+    
+</body>
+</html>

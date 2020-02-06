@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>二叉搜索树</title>
+</head>
+
+<body>
+    <script>
+        class Node {
+            constructor(key) {
+                this.key = key;
+                this.left = null;
+                this.right = null
+            }
+        }
+        class Tree{
+            constructor(){
+                this.root = null;
+            }
+            insert(key){
+                let node = new Node(key);
+                if(this.root){
+                    this.insetnode(this.root,node)
+                }else{
+                    this.root= node
+                }
+            }
+            insetnode(node,newnode){
+                if(newnode.key>=node.key){
+                    if(node.right==null){
+                        node.right = newnode
+                    }
+                    else{
+                        this.insetnode(node.right,newnode)
+                    }
+                }else{
+                    if(node.left==null){
+                        node.left = newnode
+                    }
+                    else{
+                        this.insetnode(node.left,newnode)
+                    }
+                }
+            }
+            printf(value){
+                console.log(value)
+            }
+            inOrderTraverse(callback){
+                this.inOrderTraverseNode(this.root, callback); //{1} 
+            }
+            inOrderTraverseNode(node,callback){
+                if(node!==null){
+                    this.inOrderTraverseNode(node.left,callback)
+                    this.inOrderTraverseNode(node.right,callback)
+                    callback(node.key)
+                    
+                }else{
+                    
+                }
+            }
+            getMin(){
+                let node = this.root;
+                
+                if(node){
+                    while(node&&node.left!==null){
+                        node  = node.left
+                    }
+                }
+                console.log(node.key)
+                return node.key
+            }
+            getMax(){
+                let node = this.root;
+                
+                if(node){
+                    while(node&&node.right!==null){
+                        node  = node.right
+                    }
+                }
+                console.log(node.key)
+                return node.key
+            }
+            getRoot(){
+                console.log(this.root)
+            }
+
+        }
+        let NewTree = new Tree();
+        NewTree.insert(11)
+        NewTree.insert(7)
+        NewTree.insert(15)
+        NewTree.insert(6)
+        NewTree.insert(8)
+
+        
+        NewTree.inOrderTraverse(NewTree.printf)
+        NewTree.getMin()
+        NewTree.getMax()
+        NewTree.getRoot()
+    </script>
+</body>
+
+</html>

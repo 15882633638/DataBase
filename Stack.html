@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    {
+        class Stack{
+            constructor(){
+                this.items = []
+            }
+            //添加元素到栈里面
+            push(item){
+                this.items.push(item)
+            }
+            //删除元素
+            pop(){
+               return this.items.pop()
+            }
+            // 返回栈顶的元素
+            peek(){
+                return this.items[this.items.length-1]
+            }
+            //判定这个栈是否为空
+            isempty(){
+                return this.items.length==0
+            }
+            //清除栈里面的所有元素
+            clear(){
+                this.items = []
+            }
+            //返回栈里面的个数
+            size(){
+                return this.items.length
+            }
+            getitems(){
+                return this.items
+            }
+        }
+        class ChangeData{
+            constructor(data){
+                //这是要转化的参数
+                this.data = data;
+                //余数
+                this.rem = null
+                this.stack = new Stack();
+                this.stringnum = '';
+            }
+            Change(){
+                while(this.data>0){
+                    this.rem = this.data%2;
+                    this.stack.push(this.rem)
+                    this.data = parseInt(this.data/2) 
+                }
+                console.log(this.stack.getitems())
+                while(!this.stack.isempty()){
+                    this.stringnum+=this.stack.pop()
+                }
+                return this.stringnum
+                
+            }
+        }
+        let newChangeData  = new ChangeData(1314);
+        console.log(newChangeData.Change()) 
+
+
+
+    }    
+        
+        
+    </script>
+</body>
+</html>
